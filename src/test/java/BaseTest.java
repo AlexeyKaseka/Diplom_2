@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import org.junit.Before;
 
 public class BaseTest {
@@ -8,6 +9,7 @@ public class BaseTest {
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri("https://stellarburgers.nomoreparties.site")
+                .setContentType(ContentType.JSON)
                 .build();
     }
 }

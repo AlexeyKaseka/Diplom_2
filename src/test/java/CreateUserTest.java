@@ -1,6 +1,6 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +12,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.is;
 
 
-public class CreateUserTest extends BaseTest{
+public class CreateUserTest extends BaseTest {
     private UserSteps userSteps = new UserSteps();
     private User user;
 
@@ -56,7 +56,7 @@ public class CreateUserTest extends BaseTest{
 
     @Test
     @DisplayName("Создание пользователя без почты")
-    @Description("ПНегативный тест: проверка успешного создания пользователя без указания почты")
+    @Description("Негативный тест: проверка создания пользователя без указания почты")
     public void createUserWithOutEmail() {
         user.withEmail(null)
                 .withPassword(RandomStringUtils.randomAlphabetic(12))
@@ -70,7 +70,7 @@ public class CreateUserTest extends BaseTest{
 
     @Test
     @DisplayName("Создание пользователя без пароля")
-    @Description("Негативный тест: проверка успешного создания пользователя без указания пароля")
+    @Description("Негативный тест: проверка создания пользователя без указания пароля")
     public void createUserWithOutPassword() {
         user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
                 .withPassword(null)
@@ -84,7 +84,7 @@ public class CreateUserTest extends BaseTest{
 
     @Test
     @DisplayName("Создание пользователя без имени")
-    @Description("Негативный тест: проверка успешного создания пользователя без указания имени")
+    @Description("Негативный тест: проверка создания пользователя без указания имени")
     public void createUserWithOutName() {
         user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
                 .withPassword(RandomStringUtils.randomAlphabetic(12))
