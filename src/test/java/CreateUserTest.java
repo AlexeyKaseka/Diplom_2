@@ -12,7 +12,7 @@ import static org.apache.http.HttpStatus.SC_OK;
 import static org.hamcrest.Matchers.is;
 
 
-public class CreateUserTest {
+public class CreateUserTest extends BaseTest{
     private UserSteps userSteps = new UserSteps();
     private User user;
 
@@ -23,7 +23,7 @@ public class CreateUserTest {
         user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
                 .withPassword(RandomStringUtils.randomAlphabetic(12))
                 .withName(RandomStringUtils.randomAlphabetic(12));
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
+
     }
 
     @Test
