@@ -18,9 +18,9 @@ public class LoginUserTest extends BaseTest {
     @Before
     public void setUp() {
         user = new User();
-        user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
-                .withPassword(RandomStringUtils.randomAlphabetic(12))
-                .withName(RandomStringUtils.randomAlphabetic(12));
+        user.withEmail(RandomStringUtils.randomAlphabetic(6) + "@test.ru")
+                .withPassword(RandomStringUtils.randomAlphabetic(8))
+                .withName(RandomStringUtils.randomAlphabetic(8));
 
         userSteps.createUser(user);
         accessToken = userSteps.getAccessToken(user);

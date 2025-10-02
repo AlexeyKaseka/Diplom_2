@@ -20,9 +20,9 @@ public class CreateUserTest extends BaseTest {
     @Before
     public void setUp() {
         user = new User();
-        user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
-                .withPassword(RandomStringUtils.randomAlphabetic(12))
-                .withName(RandomStringUtils.randomAlphabetic(12));
+        user.withEmail(RandomStringUtils.randomAlphabetic(6) + "@test.ru")
+                .withPassword(RandomStringUtils.randomAlphabetic(8))
+                .withName(RandomStringUtils.randomAlphabetic(8));
 
     }
 
@@ -59,8 +59,8 @@ public class CreateUserTest extends BaseTest {
     @Description("Негативный тест: проверка создания пользователя без указания почты")
     public void createUserWithOutEmail() {
         user.withEmail(null)
-                .withPassword(RandomStringUtils.randomAlphabetic(12))
-                .withName(RandomStringUtils.randomAlphabetic(12));
+                .withPassword(user.getPassword())
+                .withName(user.getName());
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
@@ -72,9 +72,9 @@ public class CreateUserTest extends BaseTest {
     @DisplayName("Создание пользователя без пароля")
     @Description("Негативный тест: проверка создания пользователя без указания пароля")
     public void createUserWithOutPassword() {
-        user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
+        user.withEmail(user.getEmail())
                 .withPassword(null)
-                .withName(RandomStringUtils.randomAlphabetic(12));
+                .withName(user.getName());
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
@@ -86,8 +86,8 @@ public class CreateUserTest extends BaseTest {
     @DisplayName("Создание пользователя без имени")
     @Description("Негативный тест: проверка создания пользователя без указания имени")
     public void createUserWithOutName() {
-        user.withEmail(RandomStringUtils.randomAlphabetic(12) + "@test.ru")
-                .withPassword(RandomStringUtils.randomAlphabetic(12))
+        user.withEmail(user.getEmail())
+                .withPassword(user.getPassword())
                 .withName(null);
 
         userSteps.createUser(user)
