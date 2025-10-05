@@ -78,6 +78,38 @@ public class LoginUserTest extends BaseTest {
 
     }
 
+    @Test
+    @DisplayName("Авторизация пользователя с неверной почтой")
+    @Description("Негативный тест: проверка авторизации пользователя с неверной почтой")
+    public void loginUserWithIncorectEmail() {
+
+        user.withEmail("1234@k.com")
+                .withPassword(user.getPassword());
+
+
+        userSteps.loginUser(user)
+                .statusCode(SC_UNAUTHORIZED)
+                .body("success", is(false));
+
+
+    }
+
+    @Test
+    @DisplayName("Авторизация пользователя c неверным паролем")
+    @Description("Негативный тест: проверка авторизации пользователя с неверным паролем")
+    public void loginUserWithInavlidPassword() {
+
+        user.withEmail(user.getEmail())
+                .withPassword("12345678");
+
+
+        userSteps.loginUser(user)
+                .statusCode(SC_UNAUTHORIZED)
+                .body("success", is(false));
+
+
+    }
+
 
     @After
     public void tearDown() {
