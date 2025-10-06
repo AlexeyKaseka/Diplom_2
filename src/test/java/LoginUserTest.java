@@ -56,8 +56,8 @@ public class LoginUserTest extends BaseTest {
 
         userSteps.loginUser(user)
                 .statusCode(SC_UNAUTHORIZED)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("email or password are incorrect"));
 
     }
 
@@ -73,15 +73,15 @@ public class LoginUserTest extends BaseTest {
 
         userSteps.loginUser(user)
                 .statusCode(SC_UNAUTHORIZED)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("email or password are incorrect"));
 
     }
 
     @Test
     @DisplayName("Авторизация пользователя с неверной почтой")
     @Description("Негативный тест: проверка авторизации пользователя с неверной почтой")
-    public void loginUserWithIncorectEmail() {
+    public void loginUserWithIncorrectEmail() {
 
         user.withEmail("1234@k.com")
                 .withPassword(user.getPassword());
@@ -89,15 +89,15 @@ public class LoginUserTest extends BaseTest {
 
         userSteps.loginUser(user)
                 .statusCode(SC_UNAUTHORIZED)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("email or password are incorrect"));
 
     }
 
     @Test
     @DisplayName("Авторизация пользователя c неверным паролем")
     @Description("Негативный тест: проверка авторизации пользователя с неверным паролем")
-    public void loginUserWithInavlidPassword() {
+    public void loginUserWithIncorrectPassword() {
 
         user.withEmail(user.getEmail())
                 .withPassword("12345678");
@@ -105,8 +105,8 @@ public class LoginUserTest extends BaseTest {
 
         userSteps.loginUser(user)
                 .statusCode(SC_UNAUTHORIZED)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("email or password are incorrect"));
 
     }
 

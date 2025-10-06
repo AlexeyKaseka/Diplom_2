@@ -55,7 +55,8 @@ public class CreateOrderTest extends BaseTest {
 
         orderSteps.createOrderWithOutAuth(order)
                 .statusCode(SC_UNAUTHORIZED)
-                .body("success", is(false));
+                .body("success", is(false))
+                .body("message", is("You should be authorised"));
 
 
     }
@@ -70,8 +71,8 @@ public class CreateOrderTest extends BaseTest {
 
         orderSteps.createOrderWithAuth(order, accessToken)
                 .statusCode(SC_BAD_REQUEST)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("Ingredient ids must be provided"));
 
     }
 

@@ -49,8 +49,8 @@ public class CreateUserTest extends BaseTest {
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("User already exists"));
     }
 
 
@@ -64,8 +64,8 @@ public class CreateUserTest extends BaseTest {
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("Email, password and name are required fields"));
     }
 
     @Test
@@ -78,8 +78,8 @@ public class CreateUserTest extends BaseTest {
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("Email, password and name are required fields"));
     }
 
     @Test
@@ -92,8 +92,8 @@ public class CreateUserTest extends BaseTest {
 
         userSteps.createUser(user)
                 .statusCode(SC_FORBIDDEN)
-                .body("success", is(false));
-
+                .body("success", is(false))
+                .body("message", is("Email, password and name are required fields"));
     }
 
 
